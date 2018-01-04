@@ -134,10 +134,10 @@ commentsCollection.get(4).then((response) => {
 ### Response
 A response is made from the HTTP response fetched from the endpoint. It exposes `statusCode()`, `headers()`, and `body()` methods. For a `GET` request, the `body` method will return one or an array of entities. Therefore you can disable this hydration by calling `body(false)`.
 
-#### Headers 
+#### Headers
 
 For most of cases, `headers` in a response will be a plain object with headers data, but for some browsers, that don't support iteration over [Headers](https://developer.mozilla.org/en-US/docs/Web/API/Headers) object, it will simply be returned as a [Headers object](https://developer.mozilla.org/en-US/docs/Web/API/Headers), so you can use `get` method from it to get required headers.
-    
+
 ### Entity Data
 
 An entity is made from the HTTP response data fetched from the endpoint. It exposes a `data()` method:
@@ -337,12 +337,14 @@ resource.addErrorInterceptor((error, config) => {
 
 * `all ( name )`: Query a collection child of the entity.
 * `custom ( name [, isRelative = true ] )`: Target a child member with a custom url.
-* `data ()` : Get the JS object unserialized from the response body (which must be in JSON)
+* `data ()` : Get the JS object unserialized from the response body (which must be in JSON). Each property is a getter/setter to Mithril Stream
+* `values ()` : Get the JS object unserializing Stream Values.
 * `id ()`: Get the id of the entity.
 * `one ( name, id )`: Query a member child of the entity.
 * `delete ( [, data [, params [, headers ]]] )`: Delete the member link to the entity. Returns a promise with the response.
 * `save ( [, data [, params [, headers ]]] )`: Update the member link to the entity. Returns a promise with the response.
 * `url ()`: Get the entity url.
+* `.stream.<property>`: Access Mithril Stream for property
 
 ```js
 // http://api.example.com/articles/1/comments/2

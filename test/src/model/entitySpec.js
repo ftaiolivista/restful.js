@@ -29,7 +29,7 @@ describe('Entity model', () => {
     });
 
     it('should return its data when data is called', () => {
-        expect(entity.data()).to.deep.equal({
+        expect(entity.values()).to.deep.equal({
             hello: 'world',
             here: 'again',
         });

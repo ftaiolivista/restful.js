@@ -48,14 +48,14 @@ describe('Restful', () => {
             .then((response) => {
                 const articles = response.body();
 
-                expect(articles[0].data()).to.deep.equal({
+                expect(articles[0].values()).to.deep.equal({
                     author: 'Pedro',
                     title: 'Beauty Is A Kaleidoscope of Colour',
                     _id: '1',
                 });
                 expect(articles[0].id()).to.equal('1');
 
-                expect(articles[3].data()).to.deep.equal({
+                expect(articles[3].values()).to.deep.equal({
                     author: 'Tuco',
                     title: 'The Admirable Reason Why He Took The Right Path',
                     _id: '4',
@@ -77,6 +77,7 @@ describe('Restful', () => {
                         return comment.save();
                     })
                     .then((response) => {
+                        console.log('YYYY', response.body(false))
                         expect(response.body(false)).to.deep.equal({
                             content: 'Updated',
                             id: '2',

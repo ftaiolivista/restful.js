@@ -49,7 +49,7 @@ describe('Response model', () => {
     it('should return one entity when it raw data is not an array and body is called without argument', () => {
         const entity = response.body();
 
-        expect(entity.data()).to.deep.equal({
+        expect(entity.values()).to.deep.equal({
             hello: 'world',
             here: 'again',
         });
@@ -75,11 +75,11 @@ describe('Response model', () => {
             ],
         }), endpoint).body();
 
-        expect(entities[0].data()).to.deep.equal({
+        expect(entities[0].values()).to.deep.equal({
             hello: 'world',
             here: 'again',
         });
-        expect(entities[1].data()).to.deep.equal({
+        expect(entities[1].values()).to.deep.equal({
             hello: 'world2',
             here: 'again2',
         });
