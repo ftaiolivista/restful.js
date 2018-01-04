@@ -25,7 +25,7 @@ export default function(data, endpoint) {
         },
         values () {
             let d = {}
-            for (let propertyName in data) {
+            for (let propertyName in streams) {
                 d[propertyName] = streams[propertyName]()
             }
             return d
@@ -38,6 +38,12 @@ export default function(data, endpoint) {
             return endpoint.put(this.values(), ...args);
         },
         url: endpoint.url,
-        stream: streams
+        stream: streams,
+        prop(propertyName) {
+            if (typeof streams[propertyName] === "undefined") {
+                streams[propertyName] = Stream()
+                return streams[propertyName]
+            }
+        }
     };
 }

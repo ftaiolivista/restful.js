@@ -345,7 +345,7 @@ resource.addErrorInterceptor((error, config) => {
 * `save ( [, data [, params [, headers ]]] )`: Update the member link to the entity. Returns a promise with the response.
 * `url ()`: Get the entity url.
 * `.stream.<property>`: Access Mithril Stream for property
-
+* `prop (propname)`: Get the property Stream (create one if no found.
 ```js
 // http://api.example.com/articles/1/comments/2
 const commentMember = api.one('articles', 1).one('comments', 2);

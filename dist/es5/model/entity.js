@@ -1,21 +1,21 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var _mithrilStream = require('mithril-stream');
 
 var _mithrilStream2 = _interopRequireDefault(_mithrilStream);
 
-exports['default'] = function (data, endpoint) {
+exports["default"] = function (data, endpoint) {
     var streams = {};
     var _data = {};
 
     for (var propertyName in data) {
-        streams[propertyName] = (0, _mithrilStream2['default'])(data[propertyName]);
+        streams[propertyName] = (0, _mithrilStream2["default"])(data[propertyName]);
         Object.defineProperty(_data, propertyName, {
             set: streams[propertyName],
             get: streams[propertyName]
@@ -25,13 +25,13 @@ exports['default'] = function (data, endpoint) {
     return {
         all: endpoint.all,
         custom: endpoint.custom,
-        'delete': endpoint['delete'],
+        "delete": endpoint["delete"],
         data: function data() {
             return _data;
         },
         values: function values() {
             var d = {};
-            for (var propertyName in data) {
+            for (var propertyName in streams) {
                 d[propertyName] = streams[propertyName]();
             }
             return d;
@@ -48,8 +48,14 @@ exports['default'] = function (data, endpoint) {
             return endpoint.put.apply(endpoint, [this.values()].concat(args));
         },
         url: endpoint.url,
-        stream: streams
+        stream: streams,
+        prop: function prop(propertyName) {
+            if (typeof streams[propertyName] === "undefined") {
+                streams[propertyName] = (0, _mithrilStream2["default"])();
+                return streams[propertyName];
+            }
+        }
     };
 };
 
-module.exports = exports['default'];
+module.exports = exports["default"];
