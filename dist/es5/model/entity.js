@@ -52,8 +52,8 @@ exports["default"] = function (data, endpoint) {
         prop: function prop(propertyName) {
             if (typeof streams[propertyName] === "undefined") {
                 streams[propertyName] = (0, _mithrilStream2["default"])();
-                return streams[propertyName];
             }
+            return streams[propertyName];
         }
     };
 };

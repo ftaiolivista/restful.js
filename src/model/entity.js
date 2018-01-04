@@ -42,8 +42,8 @@ export default function(data, endpoint) {
         prop(propertyName) {
             if (typeof streams[propertyName] === "undefined") {
                 streams[propertyName] = Stream()
-                return streams[propertyName]
             }
+            return streams[propertyName]
         }
     };
 }
